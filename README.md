@@ -2,8 +2,14 @@
 
 
 현재 레포지토리는 Deployments이며 modules 는 레포지토리를 분리하였습니다.
+
 https://github.com/dudgns3443/terraform-modules
+
 terraform 코드 아키텍처는 멀티계정, 멀티리전을 고려해서 확장성있게 구성했습니다 디렉토리 구성은 아래와 같습니다.
+
+vpc와 eks 는 terraform의 공식 모듈을 활용해 기본 세팅을 provisioning합니다
+
+subnet과 nodegroup은 추후에 더 추가되고 확장성있게 관리하기위해 모듈을 따로 만들었습니다.
 
 ```
 deployments
