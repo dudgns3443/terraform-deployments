@@ -5,7 +5,7 @@
 https://github.com/dudgns3443/terraform-modules
 terraform 코드 아키텍처는 멀티계정, 멀티리전을 고려해서 확장성있게 구성했습니다 디렉토리 구성은 아래와 같습니다.
 
-
+```
 deployments
     ├── account1
     │   ├── terragrunt.hcl         # 계정 전역 설정
@@ -33,6 +33,6 @@ deployments
     │   │   └── … (구조 동일)
     └── account2
         └── … (account1과 동일한 구조)
-
+```
 코드는 account1/ap-northeast-2/prod 에서만 동작합니다
 
