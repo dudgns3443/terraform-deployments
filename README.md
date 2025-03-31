@@ -16,11 +16,9 @@ deployments
     │   │   ├── terragrunt.hcl     # 리전 공통 설정
     │   │   ├── prod              # 환경별 디렉토리
     │   │   │   ├── vpc
-    │   │   │   │   ├── terragrunt.hcl
-    │   │   │   │   └── vars.tfvars
+    │   │   │   │   └── terragrunt.hcl
     │   │   │   ├── subnet
-    │   │   │   │   ├── terragrunt.hcl
-    │   │   │   │   └── vars.tfvars
+    │   │   │   │   └── terragrunt.hcl
     │   │   │   ├── eks
     │   │   │   ├── nodegroup
     │   │   │   ├── helm-alb-ingress
@@ -34,5 +32,4 @@ deployments
     └── account2
         └── … (account1과 동일한 구조)
 ```
-코드는 account1/ap-northeast-2/prod 에서만 동작합니다
-
+코드는 현재 account1/ap-northeast-2/prod 에만 작성되어있습니다.
