@@ -53,12 +53,30 @@ inputs = {
   # IRSA(Instance Role for Service Accounts) 활성화 및 로그 유형 지정
   enable_irsa               = true
   cluster_enabled_log_types = ["api", "audit", "authenticator"]
-
+  
   # 기본 애드온 
   cluster_addons = {
     coredns   = { most_recent = true } # coredns는 노드그룹 만든 후에 적용하는게 좋다. 먼저만들면 timeout됨됨
     kube-proxy = { most_recent = true }
     vpc-cni   = { most_recent = true }
+  }
+
+  # 엑세스 권한 부여
+  access_entries = {
+    # One access entry with a policy associated
+    example = {
+      principal_arn = "arn:aws:iam::534420079206:role/KubernetesAdmin"
+
+      policy_associations = {
+        example = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            namespaces = ["default"]
+            type       = "namespace"
+          }
+        }
+      }
+    }
   }
 
   # 태그: 상위 계층(account 등)에서 선언한 공통 태그에 환경과 리전 정보를 병합

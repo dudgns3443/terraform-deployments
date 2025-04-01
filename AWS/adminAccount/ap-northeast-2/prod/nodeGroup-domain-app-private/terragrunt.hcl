@@ -66,7 +66,7 @@ inputs = {
   disk_size = 20
 
   create                 = true
-  cluster_service_cidr   = "10.100.0.0/16"
+  cluster_service_cidr   = dependency.eks.outputs.cluster_service_cidr
 
   tags = merge(local.tags, {
       Environment = local.env,
