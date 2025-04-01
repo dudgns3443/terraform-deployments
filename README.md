@@ -1,6 +1,5 @@
 ## terraform 모듈을 실제 배포하는 레포지토리
 
-
 현재 레포지토리는 Deployments이며 modules 는 레포지토리를 분리하였습니다.
 
 https://github.com/dudgns3443/terraform-modules
@@ -39,3 +38,20 @@ deployments
         └── … (account1과 동일한 구조)
 ```
 코드는 현재 account1/ap-northeast-2/prod 에만 작성되어있습니다.
+
+최상위 에서 
+```
+terragrunt run-all [init, plan, apply]
+```
+를 실행하면 모든 리소스가 배포됩니다.
+
+하지만 각 모듈에 들어가서 독립적으로 
+```
+terragrunt [init, plan, apply]
+```
+배포하는 것을 권장합니다.
+
+
+애플리케이션(springboot)도 레포지토리를 따로 분리했으며 간단한 CICD 구현해놓았습니다.
+
+https://github.com/dudgns3443/cicd-demo
