@@ -1,6 +1,10 @@
+include {
+  path = find_in_parent_folders()
+}
+
 terraform {
   backend "s3" {
-    bucket         = "my-terraform-state-bucket"
+    bucket         = "ST.terraform-state-bucket"
     key            = "${path_relative_to_include()}/terraform.tfstate"
     region         = "ap-northeast-2"
     dynamodb_table = "terraform-locks"
@@ -8,7 +12,7 @@ terraform {
 }
 
 locals {
-  profile  = "admin"
+  profile  = "default"
   common_tags = {
     Owner     = "team-spoon"
     ManagedBy = "terragrunt"

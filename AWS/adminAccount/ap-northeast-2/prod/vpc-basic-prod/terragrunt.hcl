@@ -17,10 +17,7 @@ inputs = {
   cidr = local.cidr
 
   # 현재 리전(local.region) 기준으로 가용 영역(AZ) 접미사를 붙여 AZ 목록 생성
-  azs = [
-    "${local.region}a",
-    "${local.region}c",
-  ]
+  azs = local.azs
 
   public_subnets  = [
     "10.0.1.0/24",
