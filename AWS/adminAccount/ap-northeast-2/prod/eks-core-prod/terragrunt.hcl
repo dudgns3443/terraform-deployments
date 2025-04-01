@@ -46,7 +46,12 @@ inputs = {
 
   # EKS 클러스터에서 사용할 서브넷과 VPC ID
   vpc_id     = dependency.vpc.outputs.vpc_id
-  subnet_ids = dependency.vpc.outputs.private_subnets
+  subnet_ids = concat(
+    dependency.vpc.outputs.public_subnets,
+    dependency.vpc.outputs.private_subnets
+  )
+
+  cluster_endpoint_public_access = true
 
   # IRSA(Instance Role for Service Accounts) 활성화 및 로그 유형 지정
   enable_irsa               = true
@@ -61,16 +66,20 @@ inputs = {
 
   # 엑세스 권한 부여
   access_entries = {
-    # One access entry with a policy associated
-    example = {
-      principal_arn = "arn:aws:iam::534420079206:role/KubernetesAdmin"
+    admin = {
+      principal_arn = "arn:aws:iam::534420079206:user/yh.kim"
 
       policy_associations = {
-        example = {
+        adminview = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminViewPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+        clusterAdmin = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
           access_scope = {
-            namespaces = ["default"]
-            type       = "namespace"
+            type       = "cluster"
           }
         }
       }
