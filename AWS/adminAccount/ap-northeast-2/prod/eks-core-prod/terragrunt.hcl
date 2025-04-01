@@ -19,8 +19,6 @@ include "env" {
 }
 
 locals {
-#   relative_path = path_relative_to_include()
-#   path_parts = split("/", local.relative_path)
   company = include.root.locals.company
   profile = include.account.locals.profile
   region  = include.region.locals.region
@@ -56,7 +54,7 @@ inputs = {
   
   # 기본 애드온 
   cluster_addons = {
-    coredns   = { most_recent = true } # coredns는 노드그룹 만든 후에 적용하는게 좋다. 먼저만들면 timeout됨됨
+    coredns   = { most_recent = true } # coredns는 노드그룹 만든 후에 적용하는게 좋다. 먼저만들면 timeout됨
     kube-proxy = { most_recent = true }
     vpc-cni   = { most_recent = true }
   }
