@@ -33,8 +33,8 @@ locals {
 
 
 terraform {
-  # 공식 EKS 클러스터 모듈을 호출
-  source = "terraform-aws-modules/eks/aws//modules/eks-cluster?ref=v20.13.1"
+  # 공식 EKS 클러스터 모듈을 호출 registy에서 안받아와져서 git 공식주소를 사용
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-eks.git//?ref=v20.35.0"
 }
 
 dependency "vpc" {
@@ -62,7 +62,7 @@ inputs = {
   }
 
   # 태그: 상위 계층(account 등)에서 선언한 공통 태그에 환경과 리전 정보를 병합
-  tags = merge(local.common_tags, {
+  tags = merge(local.tags, {
     Environment = local.env,
     Region      = local.region,
     Project     = "${local.company}-eks-cluster"

@@ -31,7 +31,7 @@ locals {
 }
 
 terraform {
-  # Terraform Registry의 공식 VPC 모듈을 사용
+  # Terraform Registry의 공식 VPC 모듈을 사용 registy에서 안받아와져서 git 공식주소를 사용
 #   source = "terraform-aws-modules/vpc/aws?ref=v5.19.0" 
   source = "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git//?ref=v5.19.0"
 

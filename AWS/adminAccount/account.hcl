@@ -2,16 +2,6 @@ locals {
     profile = "default"
 }
 
-generate "provider" {
-  path      = "provider.tf"    # 모듈 실행 시 자동 생성될 provider 설정 파일
-  if_exists = "overwrite"       # 이미 파일이 있다면 덮어씁니다.
-  contents  = <<EOF
-provider "aws" {
-  region  = "ap-northeast-2"
-  profile = "${local.profile}"
-}
-EOF
-}
 generate "backend" {
   path      = "backend.tf"    # 모듈 실행 시 자동 생성될 provider 설정 파일
   if_exists = "overwrite"       # 이미 파일이 있다면 덮어씁니다.
