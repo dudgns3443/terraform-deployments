@@ -54,9 +54,9 @@ inputs = {
   enable_irsa               = true
   cluster_enabled_log_types = ["api", "audit", "authenticator"]
 
-  # 기본 애드온(예: CoreDNS, kube-proxy, vpc-cni)을 최신 버전으로 사용
+  # 기본 애드온 
   cluster_addons = {
-    coredns   = { most_recent = true }
+    coredns   = { most_recent = true } # coredns는 노드그룹 만든 후에 적용하는게 좋다. 먼저만들면 timeout됨됨
     kube-proxy = { most_recent = true }
     vpc-cni   = { most_recent = true }
   }
