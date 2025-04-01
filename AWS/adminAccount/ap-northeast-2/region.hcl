@@ -1,7 +1,3 @@
-include {
-  path = find_in_parent_folders()
-}
-
 locals {
   region = "ap-northeast-2"
   azs = [
@@ -9,4 +5,3 @@ locals {
     "${local.region}c"
   ]
 }
-
