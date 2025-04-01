@@ -1,7 +1,7 @@
 locals {
   company = "company"
   common_tags = {
-    Owner     = "team-spoon"
+    Owner     = "team-devops"
     ManagedBy = "terragrunt"
   }
 }

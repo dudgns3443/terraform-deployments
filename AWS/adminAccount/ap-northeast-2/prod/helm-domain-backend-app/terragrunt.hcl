@@ -36,42 +36,31 @@ terraform {
 dependency "eks" {
   config_path = "../eks-core-prod"
 }
-dependency "vpc" {
-  config_path = "../vpc-basic-prod"
-}
 
 inputs = {
-  cluster_name   = dependency.eks.outputs.cluster_name
-  subnet_ids     = dependency.vpc.outputs.private_subnets
-
-  name           = "domain-backend-app-private-nodegroup"
-  name_prefix    = "domain-backend-app-private"
-  iam_role_use_name_prefix = false
-  instance_types = ["t3.medium"]
-
-  desired_capacity = 1
-  min_capacity     = 1
-  max_capacity     = 1
-  capacity_type    = "ON_DEMAND"
-
-  update_config = {
-    max_unavailable = 1
-  }
-
-  labels = {
-    subnet_type = "private"
-    role        = "worker"
-  }
-
-  disk_size = 20
-
-  create                 = true
-  cluster_service_cidr   = "10.100.0.0/16"
-
-  tags = merge(local.tags, {
-      Environment = local.env,
-      Region      = local.region,
-      NodeGroup   = "backend-app-ng"
-    }
-  )
+  release_name = "my-app"
+  namespace    = "default"
+  chart        = "my-app-chart"
+  repository   = "https://charts.example.com/"  # 여러분의 애플리케이션 헬름 차트가 저장된 저장소
+  version      = "0.1.0"
+  values = [
+    <<EOF
+replicaCount: 2
+image:
+  repository: my-app-image
+  tag: latest
+service:
+  type: ClusterIP
+  port: 8080
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  hosts:
+    - host: myapp.example.com
+      paths:
+        - /
+EOF
+  ]
+  kubeconfig = dependency.eks.outputs.kubeconfig
 }
