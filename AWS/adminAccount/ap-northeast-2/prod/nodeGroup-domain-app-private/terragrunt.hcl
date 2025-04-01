@@ -47,7 +47,7 @@ inputs = {
   name           = "domain-backend-app-private-nodegroup"
   name_prefix    = "domain-backend-app-private"
   iam_role_use_name_prefix = false
-  instance_types = ["t4g.medium"]
+  instance_types = ["t3.medium"]
 
   desired_capacity = 1
   min_capacity     = 1
