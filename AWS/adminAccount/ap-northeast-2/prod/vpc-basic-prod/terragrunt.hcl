@@ -19,8 +19,6 @@ include "env" {
 }
 
 locals {
-#   relative_path = path_relative_to_include()
-#   path_parts = split("/", local.relative_path)
   company = include.root.locals.company
   profile = include.account.locals.profile
   region  = include.region.locals.region
@@ -43,10 +41,8 @@ inputs = {
   region     = local.region
   env        = local.env
   
-  # 최상위 env 레벨에서 정의한 CIDR 값을 사용 (예: "10.0.0.0/16")
   cidr = local.cidr
 
-  # 현재 리전(local.region) 기준으로 가용 영역(AZ) 접미사를 붙여 AZ 목록 생성
   azs = local.azs
 
   public_subnets  = [
