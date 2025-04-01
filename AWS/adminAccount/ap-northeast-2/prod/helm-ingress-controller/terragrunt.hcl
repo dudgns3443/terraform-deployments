@@ -38,6 +38,11 @@ dependency "eks" {
 }
 
 inputs = {
+  #클러스터 정보
+  cluster_endpoint                   = dependency.eks.outputs.cluster_endpoint
+  cluster_certificate_authority_data = dependency.eks.outputs.cluster_certificate_authority_data
+  cluster_name                       = dependency.eks.outputs.cluster_name
+
   release_name = "nginx-ingress"
   namespace    = "ingress-nginx"
   chart        = "ingress-nginx"
@@ -53,6 +58,5 @@ controller:
     #   service.beta.kubernetes.io/aws-load-balancer-internal: "true"
 EOF
   ]
-  # EKS 모듈에서 출력한 kubeconfig (또는 클러스터 접속 정보를 전달)
-  kubeconfig = dependency.eks.outputs.kubeconfig
+  
 }
