@@ -38,7 +38,7 @@ deployments
     └── account2
         └── … (account1과 동일한 구조)
 ```
-코드는 현재 account1/ap-northeast-2/prod 에만 작성되어있습니다.
+코드는 현재 CompanyAccount1/ap-northeast-2/prod 에만 작성되어있습니다.
 
 nodegroup에 subnet-type: private label을 추가해 subnet 타입을 명시할수 있게했습니다.
 해당 label을 통해 deployment에 affinity rule을 추가해
