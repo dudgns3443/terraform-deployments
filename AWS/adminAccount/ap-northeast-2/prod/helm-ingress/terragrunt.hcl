@@ -30,8 +30,7 @@ locals {
 }
 
 terraform {
-  # source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=main"
-  source = "../../../../../../terraform-modules/helm"
+  source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=v1.1"
 }
 
 dependency "eks" {

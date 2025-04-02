@@ -30,8 +30,7 @@ locals {
 }
 
 terraform {
-  # source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=main"
-  source = "../../../../../../terraform-modules/helm"
+  source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=v1.1"
 }
 
 dependency "eks" {
@@ -48,5 +47,5 @@ inputs = {
   namespace               = "ingress-nginx"
   chart_version           = "4.9.1"  # 사용하고자 하는 ALB Ingress Controller Helm 차트 버전
   repo_url                = "https://kubernetes.github.io/ingress-nginx"
-  chart_name              = "ingress-nginx"
+  chart_name              = "ingress-nginx"         
 }
