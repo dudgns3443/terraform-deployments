@@ -44,9 +44,7 @@ inputs = {
   cluster_ca_certificate = dependency.eks.outputs.cluster_certificate_authority_data
   cluster_name                       = dependency.eks.outputs.cluster_name
 
-  release_name            = "ingress-nginx"
-  namespace               = "ingress-nginx"
-  chart_version           = "4.9.1"  # 사용하고자 하는 ALB Ingress Controller Helm 차트 버전
-  repo_url                = "https://kubernetes.github.io/ingress-nginx"
-  chart_name              = "ingress-nginx"
+  release_name            = "ingress-app"
+  namespace               = "domain" 
+  chart_name              = "./charts/app-chart"
 }

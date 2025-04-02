@@ -30,7 +30,8 @@ locals {
 }
 
 terraform {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-eks.git//modules/eks-managed-node-group?ref=v20.35.0"
+  # source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=main"
+  source = "../../../../../../terraform-modules/helm"
 }
 
 dependency "eks" {
@@ -38,29 +39,12 @@ dependency "eks" {
 }
 
 inputs = {
-  release_name = "my-app"
-  namespace    = "default"
-  chart        = "my-app-chart"
-  repository   = "https://charts.example.com/"  # 여러분의 애플리케이션 헬름 차트가 저장된 저장소
-  version      = "0.1.0"
-  values = [
-    <<EOF
-replicaCount: 2
-image:
-  repository: my-app-image
-  tag: latest
-service:
-  type: ClusterIP
-  port: 8080
-ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-  hosts:
-    - host: myapp.example.com
-      paths:
-        - /
-EOF
-  ]
-  kubeconfig = dependency.eks.outputs.kubeconfig
+  #클러스터 정보
+  cluster_endpoint                   = dependency.eks.outputs.cluster_endpoint
+  cluster_ca_certificate = dependency.eks.outputs.cluster_certificate_authority_data
+  cluster_name                       = dependency.eks.outputs.cluster_name
+
+  release_name            = "backend-app"
+  namespace               = "domain" 
+  chart_name              = "./charts/app-chart"
 }
