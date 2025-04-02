@@ -54,6 +54,8 @@ inputs = {
     <<EOF
 autoscaling:
   enabled: true
+service
+  type: NodePort
 image:
   url: ${dependency.ecr_backend-app.outputs.repository_url}
   pullPolicy: Always
