@@ -1,6 +1,6 @@
 ## terraform 모듈을 실제 배포하는 레포지토리
 
-현재 레포지토리는 Deployments이며 modules 는 레포지토리를 분리하였습니다.
+현재 레포지토리는 Deployments이며 modules 는 레포지토리를 분리하였습니다. helm chart도 여기에 있습니다.
 
 https://github.com/dudgns3443/terraform-modules
 
@@ -40,6 +40,11 @@ deployments
 ```
 코드는 현재 account1/ap-northeast-2/prod 에만 작성되어있습니다.
 
+nodegroup에 subnet-type: private label을 추가해 subnet 타입을 명시할수 있게했습니다.
+해당 label을 통해 deployment에 affinity rule을 추가해
+
+subnet-type: private 인 노드에 배치되도록 만들었습니다.
+
 최상위 에서 
 ```
 terragrunt run-all [init, plan, apply]
@@ -51,6 +56,10 @@ terragrunt run-all [init, plan, apply]
 terragrunt [init, plan, apply]
 ```
 배포하는 것을 권장합니다.
+
+vpc, ecr, eks, nodegroup 모두 terraform 공식모듈을사용해서 배포했으며 실질적으로 
+
+module이 작성된건 helm 모듈 뿐입니다.
 
 
 애플리케이션(springboot)도 레포지토리를 따로 분리했으며 간단한 CICD 구현해놓았습니다.
