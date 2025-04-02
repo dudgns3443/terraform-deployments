@@ -36,11 +36,7 @@ inputs = {
   repository_name = "backend-app"
   region = local.region
   
-  image_tag_mutability = "MUTABLE"
-  
-  image_scanning_configuration = {
-    scan_on_push = false
-  }
+  repository_image_tag_mutability = "MUTABLE"
 
   create_lifecycle_policy = false
 

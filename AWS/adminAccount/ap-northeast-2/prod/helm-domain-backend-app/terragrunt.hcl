@@ -38,6 +38,10 @@ dependency "eks" {
   config_path = "../eks-core-prod"
 }
 
+dependency "ecr_backend-app" {
+  config_path = "../ecr/backend-app"
+}
+
 inputs = {
   #클러스터 정보
   cluster_endpoint                   = dependency.eks.outputs.cluster_endpoint
@@ -52,7 +56,7 @@ inputs = {
 autoscaling:
   enabled: true
 image:
-  url: 534420079206.dkr.ecr.ap-northeast-2.amazonaws.com/backend-app
+  url: ${dependency.ecr_backend-app.outputs.repository_url}
   pullPolicy: Always
   tag: latest
 affinity:

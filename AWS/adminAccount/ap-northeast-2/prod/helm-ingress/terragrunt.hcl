@@ -38,6 +38,10 @@ dependency "eks" {
   config_path = "../eks-core-prod"
 }
 
+dependency "backend-app" {
+  config_path = "../helm-domain-backend-app"
+}
+
 inputs = {
   #클러스터 정보
   cluster_endpoint                   = dependency.eks.outputs.cluster_endpoint
@@ -52,13 +56,13 @@ inputs = {
 ingress:
   enabled: true
   hosts:
-  - host: test.example.com
+  - host: backendcore.conects.com
     paths:
     - path: /
       pathType: Prefix
       backend:
         service:
-          name: release-name
+          name: ${dependency.backend-app.outputs.app_name}
           port:
             number: 80
 EOF
