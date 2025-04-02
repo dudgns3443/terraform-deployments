@@ -47,4 +47,20 @@ inputs = {
   release_name            = "ingress-app"
   namespace               = "domain" 
   chart_name              = "./charts/app-chart"
+  values = [
+    <<EOF
+ingress:
+  enabled: true
+  hosts:
+  - host: test.example.com
+    paths:
+    - path: /
+      pathType: Prefix
+      backend:
+        service:
+          name: release-name
+          port:
+            number: 80
+EOF
+  ]
 }

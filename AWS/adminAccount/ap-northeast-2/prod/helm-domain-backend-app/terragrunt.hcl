@@ -47,4 +47,23 @@ inputs = {
   release_name            = "backend-app"
   namespace               = "domain" 
   chart_name              = "./charts/app-chart"
+  values = [
+    <<EOF
+autoscaling:
+  enabled: true
+image:
+  url: 534420079206.dkr.ecr.ap-northeast-2.amazonaws.com/backend-app
+  pullPolicy: Always
+  tag: latest
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: "subnet_type"
+              operator: In
+              values:
+                - "private"
+EOF
+  ]
 }
