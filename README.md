@@ -57,6 +57,13 @@ terragrunt [init, plan, apply]
 ```
 배포하는 것을 권장합니다.
 
+순서는 
+```
+vpc-basic-prod -> ecr/backend-app -> eks-core-prod(coredns제외) -> nodegroup-domain-app-private -> eks-core-prod(coredns포함) -> helm-ingress-controller -> helm-ingress -> helm-domain-backend-app
+```
+
+순서로 terragrunt init, plan, apply 하면 됩니다!
+
 vpc, ecr, eks, nodegroup 모두 terraform 공식모듈을사용해서 배포했으며 실질적으로 
 
 module이 작성된건 helm 모듈 뿐입니다.
