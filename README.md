@@ -64,9 +64,9 @@ vpc-basic-prod -> ecr/backend-app -> eks-core-prod(coredns제외) -> nodegroup-d
 
 순서로 terragrunt init, plan, apply 하면 됩니다!
 
-vpc, ecr, eks, nodegroup 모두 terraform 공식모듈을사용해서 배포했으며 실질적으로 
+vpc, ecr, eks, nodegroup 모두 terraform 공식모듈을사용해서 배포했으며 실질적으로 module이 작성된건 helm 모듈 뿐입니다.
 
-module이 작성된건 helm 모듈 뿐입니다.
+terragrunt.hcl에서 모듈 source로 "terraform-aws-modules/vpc/aws?ref=v5.19.0"와 같은 terraform registry 주소가 동작하지않아 source를 공식 모듈 git 주소로 대체했습니다.
 
 
 애플리케이션(springboot)도 레포지토리를 따로 분리했으며 간단한 CICD 구현해놓았습니다.

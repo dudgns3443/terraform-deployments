@@ -30,6 +30,7 @@ locals {
 }
 
 terraform {
+  # 모듈 위치한 GIT을 레퍼런스스
   source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=v1.1"
 }
 
