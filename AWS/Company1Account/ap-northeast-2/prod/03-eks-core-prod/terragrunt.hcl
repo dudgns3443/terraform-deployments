@@ -36,7 +36,7 @@ terraform {
 }
 
 dependency "vpc" {
-  config_path = "../vpc-basic-prod"
+  config_path = "../01-vpc-basic-prod"
 }
 
 
