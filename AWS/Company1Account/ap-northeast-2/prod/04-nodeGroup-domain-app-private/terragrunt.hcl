@@ -34,10 +34,10 @@ terraform {
 }
 
 dependency "eks" {
-  config_path = "../eks-core-prod"
+  config_path = "../03-eks-core-prod"
 }
 dependency "vpc" {
-  config_path = "../vpc-basic-prod"
+  config_path = "../01-vpc-basic-prod"
 }
 
 inputs = {
