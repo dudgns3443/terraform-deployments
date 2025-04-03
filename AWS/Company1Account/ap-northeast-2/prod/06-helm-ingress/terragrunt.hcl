@@ -34,11 +34,11 @@ terraform {
 }
 
 dependency "eks" {
-  config_path = "../eks-core-prod"
+  config_path = "../03-eks-core-prod"
 }
 
 dependency "backend-app" {
-  config_path = "../helm-domain-backend-app"
+  config_path = "../07-helm-domain-backend-app"
 }
 
 inputs = {
