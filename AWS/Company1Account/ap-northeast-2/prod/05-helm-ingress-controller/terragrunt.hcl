@@ -35,7 +35,7 @@ terraform {
 }
 
 dependency "eks" {
-  config_path = "../eks-core-prod"
+  config_path = "../03-eks-core-prod"
 }
 
 inputs = {
