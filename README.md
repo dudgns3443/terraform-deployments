@@ -59,7 +59,7 @@ terragrunt [init, plan, apply]
 
 순서는 
 ```
-vpc-basic-prod -> ecr/backend-app -> eks-core-prod(coredns제외) -> nodegroup-domain-app-private -> eks-core-prod(coredns포함) -> helm-ingress-controller -> helm-ingress -> helm-domain-backend-app
+vpc-basic-prod -> ecr/backend-app -> eks-core-prod(coredns제외) -> nodegroup-domain-app-private -> eks-core-prod(coredns포함) -> helm-ingress-controller -> helm-domain-backend-app-> helm-ingress 
 ```
 
 순서로 terragrunt init, plan, apply 하면 됩니다!
