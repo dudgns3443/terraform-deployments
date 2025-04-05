@@ -49,9 +49,9 @@ inputs = {
   iam_role_use_name_prefix = false
   instance_types = ["t3.medium"]
 
-  desired_capacity = 1
-  min_capacity     = 1
-  max_capacity     = 1
+  desired_size = 1
+  min_sizme     = 1
+  max_size     = 1
   capacity_type    = "ON_DEMAND"
 
   update_config = {
