@@ -50,7 +50,7 @@ inputs = {
   instance_types = ["t3.medium"]
 
   desired_size = 1
-  min_sizme     = 1
+  min_size     = 1
   max_size     = 1
   capacity_type    = "ON_DEMAND"
 
