@@ -33,12 +33,8 @@ terraform {
   source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=v1.1"
 }
 
-dependency "eks" {
-  config_path = "../03-eks-core-prod"
-}
-
-dependency "backend-app" {
-  config_path = "../07-helm-domain-backend-app"
+dependency "karpenter_iam" {
+  config_path = "../../../../global/iam/apn2-eks-irsa"
 }
 
 inputs = {
@@ -49,7 +45,7 @@ inputs = {
 
   release_name            = "ingress-app"
   namespace               = "domain" 
-  chart_name              = "./charts/app-chart"
+  chart_name              = "./charts/"
   values = [
     <<EOF
 ingress:

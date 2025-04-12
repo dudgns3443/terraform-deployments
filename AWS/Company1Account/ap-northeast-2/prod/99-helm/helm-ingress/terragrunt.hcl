@@ -30,12 +30,15 @@ locals {
 }
 
 terraform {
-  # 모듈 위치한 GIT을 레퍼런스스
   source = "git::https://github.com/dudgns3443/terraform-modules.git//helm?ref=v1.1"
 }
 
 dependency "eks" {
-  config_path = "../03-eks-core-prod"
+  config_path = "../../03-eks-core-prod"
+}
+
+dependency "backend-app" {
+  config_path = "../helm-domain-backend-app"
 }
 
 inputs = {
@@ -44,9 +47,23 @@ inputs = {
   cluster_ca_certificate = dependency.eks.outputs.cluster_certificate_authority_data
   cluster_name                       = dependency.eks.outputs.cluster_name
 
-  release_name            = "ingress-nginx"
-  namespace               = "ingress-nginx"
-  chart_version           = "4.9.1"  # 사용하고자 하는 ALB Ingress Controller Helm 차트 버전
-  repo_url                = "https://kubernetes.github.io/ingress-nginx"
-  chart_name              = "ingress-nginx"         
+  release_name            = "ingress-app"
+  namespace               = "domain" 
+  chart_name              = "./charts/app-chart"
+  values = [
+    <<EOF
+ingress:
+  enabled: true
+  hosts:
+  - host: backendcore.conects.com
+    paths:
+    - path: /
+      pathType: Prefix
+      backend:
+        service:
+          name: ${dependency.backend-app.outputs.app_name}
+          port:
+            number: 80
+EOF
+  ]
 }
